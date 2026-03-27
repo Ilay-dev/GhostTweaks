@@ -4,51 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ========================================== -->
-    <!--               SEO & META TAGS              -->
-    <!-- ========================================== -->
-    <title>Ghost Tweaks Ultra | Professional Windows Optimizer</title>
-    
-    <!-- Standard SEO -->
-    <meta name="description" content="Ghost Tweaks Ultra is the ultimate open-source Windows performance optimizer for gamers. Boost FPS, lower input delay, and optimize your network. Written in pure Python.">
-    <meta name="keywords" content="Windows optimizer, FPS boost, lower ping, input lag fix, gaming tweaks, registry tweaks, Python, open source, Windows 10, Windows 11, Ghost Tweaks">
-    <meta name="author" content="Ghost Tweaks Team">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="English">
-    
-    <!-- (Optional) Ersetze dies mit deiner echten URL, falls du eine eigene Domain hast -->
-    <link rel="canonical" href="https://deine-github-pages-url.io/">
-    
-    <!-- Open Graph (Für perfekte Discord, Facebook & Reddit Embeds) -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://deine-github-pages-url.io/">
-    <meta property="og:title" content="Ghost Tweaks Ultra | Ultimate Windows Optimizer">
-    <meta property="og:description" content="Max FPS. Zero Lag. The open-source Windows performance optimizer for professional gamers.">
-    <!-- Hier kannst du später einen Link zu einem Vorschaubild (1200x630px) einfügen -->
-    <meta property="og:image" content="https://deine-github-pages-url.io/banner.png">
-    
-    <!-- Theme Color für Discord Embed Rand & Mobile Browser UI -->
+    <title>Ghost Tweaks Ultra</title>
+    <meta name="description" content="Ghost Tweaks Ultra is the ultimate open-source Windows performance optimizer for gamers. Written in pure Python.">
     <meta name="theme-color" content="#00ADB5">
 
-    <!-- Twitter Cards (Für saubere Vorschau auf X/Twitter) -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ghost Tweaks Ultra | Ultimate Windows Optimizer">
-    <meta name="twitter:description" content="Max FPS. Zero Lag. The open-source Windows performance optimizer for professional gamers.">
-    <meta name="twitter:image" content="https://deine-github-pages-url.io/banner.png">
-
-    <!-- ========================================== -->
-    <!--                 FAVICON                    -->
-    <!-- ========================================== -->
-    <!-- Dies ist das generierte SVG Logo als Base64 (sofort sichtbar!) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDBBREI1IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTIgMTJoNGwzLTkgNSAxOCAzLTloNSIvPjwvc3ZnPg==">
-    <!-- Fallbacks für ältere Browser oder Apple Geräte (wenn du Dateien hochlädst) -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-
-    <!-- ========================================== -->
-    <!--              FONTS & STYLES                -->
-    <!-- ========================================== -->
+    <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
@@ -66,12 +26,7 @@
         }
 
         /* --- GLOBAL & RESET --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
             background-color: var(--bg-base);
@@ -82,323 +37,140 @@
             position: relative;
         }
 
-        /* Hintergrund Partikel Canvas */
-        #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-            pointer-events: none;
-        }
+        /* Background JS Canvas */
+        #particle-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none; }
 
-        /* Dynamischer Maus-Glow */
+        /* Dynamic Mouse Glow */
         #mouse-glow {
-            position: fixed;
-            width: 600px;
-            height: 600px;
+            position: fixed; width: 600px; height: 600px;
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.5;
-            transition: opacity 0.3s;
+            border-radius: 50%; transform: translate(-50%, -50%);
+            pointer-events: none; z-index: -1; opacity: 0.5; transition: opacity 0.3s;
         }
 
         a { text-decoration: none; color: inherit; }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-            position: relative;
-            z-index: 10;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 10; }
 
-        /* --- NAVBAR --- */
+        /* --- NAVBAR & LANG SWITCH --- */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 24px 0;
-            z-index: 100;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border-bottom: 1px solid transparent;
+            position: fixed; top: 0; left: 0; width: 100%; padding: 24px 0;
+            z-index: 100; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-bottom: 1px solid transparent;
         }
+        nav.scrolled { padding: 16px 0; background: rgba(7, 7, 9, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); }
 
-        nav.scrolled {
-            padding: 16px 0;
-            background: rgba(7, 7, 9, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .logo {
-            font-size: 1.2rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
+        .logo { font-size: 1.2rem; font-weight: 800; letter-spacing: 1px; display: flex; align-items: center; gap: 12px; }
         .logo svg { color: var(--accent); }
 
-        .nav-links a {
-            margin-left: 32px;
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            transition: color 0.3s ease;
-            font-weight: 600;
-        }
-
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-links a { font-size: 0.9rem; color: var(--text-dim); transition: color 0.3s ease; font-weight: 600; margin-left: 20px; }
         .nav-links a:hover { color: var(--text-main); }
 
-        /* --- HERO SECTION --- */
-        header {
-            padding: 180px 0 100px 0;
-            text-align: center;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .version-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 16px;
-            background: rgba(0, 173, 181, 0.1);
-            border: 1px solid var(--border-hover);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: var(--accent);
-            margin-bottom: 30px;
-            font-weight: 600;
-            font-family: 'Fira Code', monospace;
-        }
-
-        .version-badge .pulse {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 173, 181, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 173, 181, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 173, 181, 0); }
-        }
-
-        h1 {
-            font-size: 5rem;
-            font-weight: 800;
-            line-height: 1.05;
-            margin-bottom: 24px;
-            letter-spacing: -2px;
-        }
-
-        /* Hacker Effect Target */
-        .hacker-text {
-            display: block;
-            background: linear-gradient(to right, #ffffff, #8b949e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-desc {
-            font-size: 1.25rem;
-            color: var(--text-dim);
-            max-width: 650px;
-            margin: 0 auto 50px auto;
-        }
-
-        /* Buttons */
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: var(--accent);
-            color: #000;
-            padding: 18px 36px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(0, 173, 181, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 173, 181, 0.4);
-            background: #00e0eb;
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: transparent;
-            color: var(--text-main);
-            padding: 18px 36px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            margin-left: 16px;
+        /* Language Button */
+        .lang-switch {
+            background: transparent; border: 1px solid var(--border-color); color: var(--text-main);
+            padding: 8px 16px; border-radius: 50px; cursor: pointer; display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s ease; font-weight: 600; font-size: 0.85rem;
             backdrop-filter: blur(5px);
         }
+        .lang-switch:hover { background: var(--bg-surface-hover); border-color: var(--accent); color: var(--accent); }
+        .lang-switch svg { transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+        .lang-switch.animating svg { transform: rotate(360deg) scale(1.1); color: var(--accent); }
 
-        .btn-secondary:hover {
-            background: var(--bg-surface-hover);
-            border-color: var(--text-dim);
-        }
+        /* --- HERO SECTION --- */
+        header { padding: 180px 0 100px 0; text-align: center; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
 
-        .code-snippet {
-            margin-top: 40px;
-            background: #0d0d12;
-            border: 1px solid var(--border-color);
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .version-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: rgba(0, 173, 181, 0.1); border: 1px solid var(--border-hover); border-radius: 50px; font-size: 0.85rem; color: var(--accent); margin-bottom: 30px; font-weight: 600; font-family: 'Fira Code', monospace; }
+        .version-badge .pulse { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 173, 181, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(0, 173, 181, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 173, 181, 0); } }
 
+        h1 { font-size: 5rem; font-weight: 800; line-height: 1.05; margin-bottom: 24px; letter-spacing: -2px; }
+        .hacker-text { display: block; background: linear-gradient(to right, #ffffff, #8b949e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-desc { font-size: 1.25rem; color: var(--text-dim); max-width: 650px; margin: 0 auto 40px auto; }
+
+        /* Buttons */
+        .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 12px; background: var(--accent); color: #000; padding: 18px 36px; font-size: 1.1rem; font-weight: 600; border-radius: 8px; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(0, 173, 181, 0.2); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0, 173, 181, 0.4); background: #00e0eb; cursor: pointer; }
+        
+        .btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 12px; background: transparent; color: var(--text-main); padding: 18px 36px; font-size: 1.1rem; font-weight: 600; border-radius: 8px; border: 1px solid var(--border-color); transition: all 0.3s ease; margin-left: 16px; backdrop-filter: blur(5px); }
+        .btn-secondary:hover { background: var(--bg-surface-hover); border-color: var(--text-dim); }
+
+        .code-snippet { margin-top: 30px; background: #0d0d12; border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 8px; font-family: 'Fira Code', monospace; font-size: 0.9rem; color: var(--text-dim); display: inline-flex; align-items: center; gap: 12px; }
         .code-snippet span { color: var(--accent); }
 
-        /* --- FEATURES SECTION (3D Tilt Cards) --- */
+        /* Social Links */
+        .social-link {
+            display: inline-flex; align-items: center; gap: 8px; color: var(--text-dim); transition: color 0.3s ease, transform 0.3s ease; font-weight: 600; font-size: 0.95rem;
+        }
+        .social-link:hover { color: var(--text-main); transform: translateY(-2px); }
+
+        /* --- POST-DOWNLOAD MODAL (Overlay) --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            z-index: 9999; display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+
+        .modal-box {
+            background: #101014; border: 1px solid var(--border-hover); border-radius: 16px;
+            padding: 40px; max-width: 550px; width: 90%; position: relative;
+            transform: translateY(40px) scale(0.95); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);
+        }
+        .modal-overlay.active .modal-box { transform: translateY(0) scale(1); }
+
+        .modal-close {
+            position: absolute; top: 20px; right: 20px; background: transparent; border: none;
+            color: var(--text-dim); cursor: pointer; transition: color 0.3s; padding: 5px;
+        }
+        .modal-close:hover { color: var(--text-main); }
+
+        .modal-title { font-size: 1.8rem; color: var(--text-main); margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
+        .modal-title svg { color: var(--accent); }
+        .modal-desc { color: var(--text-dim); margin-bottom: 30px; font-size: 0.95rem; }
+
+        .step-box { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+        .step-title { font-weight: 600; color: var(--accent); margin-bottom: 8px; display: flex; align-items: center; gap: 10px;}
+        .step-box p { font-size: 0.9rem; color: var(--text-dim); }
+        .step-box code { background: #000; padding: 2px 6px; border-radius: 4px; font-family: 'Fira Code', monospace; color: #fff; font-size: 0.85rem;}
+
+        /* --- FEATURES SECTION --- */
         .features { padding: 120px 0; }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 80px;
-            letter-spacing: -1px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-            perspective: 1000px;
-        }
-
-        .card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 40px 30px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: border-color 0.3s;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Der innere Content der Karte (für Parallax) */
-        .card-content {
-            transform: translateZ(40px); /* Hebt den Text in 3D an */
-            pointer-events: none;
-        }
-
-        /* Dynamischer Lichtreflex (wird per JS gesteuert) */
-        .card-glare {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            border-radius: 16px;
-            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1), transparent 50%);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
-
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 80px; letter-spacing: -1px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; perspective: 1000px; }
+        
+        .card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px 30px; position: relative; transform-style: preserve-3d; transition: border-color 0.3s; backdrop-filter: blur(10px); }
+        .card-content { transform: translateZ(40px); pointer-events: none; }
+        .card-glare { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 16px; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1), transparent 50%); opacity: 0; pointer-events: none; transition: opacity 0.3s; }
         .card:hover { border-color: var(--border-hover); }
         .card:hover .card-glare { opacity: 1; }
-
-        .card-icon {
-            width: 48px; height: 48px;
-            background: rgba(0, 173, 181, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-            color: var(--accent);
-        }
-
+        
+        .card-icon { width: 48px; height: 48px; background: rgba(0, 173, 181, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: var(--accent); }
         .card h3 { font-size: 1.3rem; margin-bottom: 12px; color: var(--text-main); }
         .card p { font-size: 0.95rem; color: var(--text-dim); line-height: 1.7; }
 
         /* --- ABOUT SECTION --- */
-        .about-section {
-            padding: 120px 0;
-            border-top: 1px solid var(--border-color);
-            position: relative;
-            background: radial-gradient(circle at 50% 0%, rgba(0, 173, 181, 0.03) 0%, transparent 70%);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
+        .about-section { padding: 120px 0; border-top: 1px solid var(--border-color); position: relative; background: radial-gradient(circle at 50% 0%, rgba(0, 173, 181, 0.03) 0%, transparent 70%); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
         .about-box h2 { font-size: 2rem; color: var(--accent); margin-bottom: 24px; letter-spacing: -1px; }
         .about-box p { color: var(--text-dim); margin-bottom: 20px; font-size: 1.05rem; }
-        .about-box strong { color: var(--text-main); }
 
-        footer {
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.9rem; }
 
-        /* --- JS ANIMATION CLASSES --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* JS ANIMATION CLASSES */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 768px) {
             h1 { font-size: 3rem; }
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
             .btn-secondary { margin-left: 0; margin-top: 16px; display: flex; }
             .nav-links { display: none; }
-            #mouse-glow { display: none; } /* Disable glow on mobile for performance */
+            #mouse-glow { display: none; }
+            .nav-right { gap: 16px; }
         }
     </style>
 </head>
@@ -406,24 +178,62 @@
 
     <!-- Background JS Canvas -->
     <canvas id="particle-canvas"></canvas>
-    
-    <!-- JS Mouse Follower Glow -->
     <div id="mouse-glow"></div>
+
+    <!-- INSTRUCTIONS MODAL (Hidden by default) -->
+    <div class="modal-overlay" id="download-modal">
+        <div class="modal-box">
+            <button class="modal-close" id="close-modal" aria-label="Close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            
+            <h2 class="modal-title" data-i18n="modal_title">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Download Started!
+            </h2>
+            <p class="modal-desc" data-i18n="modal_desc">Follow these two quick steps to run the optimizer securely on your machine.</p>
+
+            <div class="step-box">
+                <div class="step-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span data-i18n="step1_title">Step 1: Get Python</span>
+                </div>
+                <p data-i18n="step1_desc">If you don't have Python installed, download it from python.org. <strong>CRITICAL:</strong> Check the box <code>Add Python to PATH</code> during the installation process!</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                    <span data-i18n="step2_title">Step 2: Run the Optimizer</span>
+                </div>
+                <p data-i18n="step2_desc">Double-click the downloaded <code>ghost_tweaks.py</code> file, or right-click it and select <strong>Run as Administrator</strong>.</p>
+            </div>
+
+            <button class="btn-secondary" style="width: 100%; margin: 20px 0 0 0;" id="btn-modal-close" data-i18n="btn_understood">Got it, close menu</button>
+        </div>
+    </div>
 
     <!-- NAVIGATION -->
     <nav id="navbar">
         <div class="nav-content">
             <div class="logo">
-                <!-- Custom SVG Logo -->
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M2 12h4l3-9 5 18 3-9h5"/>
-                </svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l3-9 5 18 3-9h5"/></svg>
                 GHOST TWEAKS
             </div>
-            <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#about">About</a>
-                <a href="https://discord.gg/jZKN5CXkn" target="_blank">Community</a>
+            
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#features" data-i18n="nav_features">Features</a>
+                    <a href="#about" data-i18n="nav_about">About</a>
+                    <a href="https://discord.gg/3VybqSQv" target="_blank" data-i18n="nav_community">Community</a>
+                    <a href="https://www.tiktok.com/@realcoretech_" target="_blank">TikTok</a>
+                </div>
+                
+                <!-- Language Switcher Button -->
+                <button class="lang-switch" id="lang-toggle">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    <span id="lang-text">EN</span>
+                </button>
             </div>
         </div>
     </nav>
@@ -432,41 +242,44 @@
     <header>
         <div class="container">
             <div class="version-badge reveal">
-                <div class="pulse"></div> Build 3.0.0 Stable
+                <div class="pulse"></div> <span data-i18n="badge_text">Build 3.0.0 Stable</span>
             </div>
             
             <h1 class="reveal" style="transition-delay: 0.1s;">
-                <span class="hacker-text" data-value="Max FPS. Zero Lag.">Max FPS. Zero Lag.</span>
+                <span class="hacker-text" data-value="Max FPS. Zero Lag." id="hacker-title">Max FPS. Zero Lag.</span>
             </h1>
             
-            <p class="hero-desc reveal" style="transition-delay: 0.2s;">
+            <p class="hero-desc reveal" style="transition-delay: 0.2s;" data-i18n="hero_desc">
                 The ultimate, open-source Windows performance optimizer for gamers. Written in pure Python. No bloatware. Just raw, uncompromised performance.
             </p>
             
             <div class="hero-buttons reveal" style="transition-delay: 0.3s;">
-                <!-- HIER DEN GITHUB RAW LINK EINTRAGEN -->
-                <a href="HIER_DEIN_GITHUB_LINK_REIN" class="btn-primary" download="ghost_tweaks.py">
-                    <!-- Download Icon -->
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
-                    Download .py Script
+                <!-- UPDATED GITHUB DOWNLOAD LINK (GhostTweaks ohne Bindestrich) -->
+                <a href="https://raw.githubusercontent.com/Ilay-dev/GhostTweaks/main/ghost_tweaks.py" class="btn-primary" download="ghost_tweaks.py" id="trigger-download">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span data-i18n="btn_download">Download .py Script</span>
                 </a>
                 
                 <a href="#features" class="btn-secondary">
-                    <!-- Terminal Icon -->
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="4 17 10 11 4 5"></polyline>
-                        <line x1="12" y1="19" x2="20" y2="19"></line>
-                    </svg>
-                    View Source
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                    <span data-i18n="btn_source">View Features</span>
                 </a>
             </div>
 
             <div class="code-snippet reveal" style="transition-delay: 0.4s;">
                 $ <span>python3</span> ghost_tweaks.py
+            </div>
+
+            <!-- NEU: SOCIAL LINKS UNTER DEM DOWNLOAD/CODE-BEREICH -->
+            <div class="reveal" style="transition-delay: 0.5s; display: flex; justify-content: center; gap: 32px; margin-top: 40px;">
+                <a href="https://discord.gg/3VybqSQv" target="_blank" class="social-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    Discord Community
+                </a>
+                <a href="https://www.tiktok.com/@realcoretech_" target="_blank" class="social-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                    TikTok
+                </a>
             </div>
         </div>
     </header>
@@ -474,88 +287,62 @@
     <!-- FEATURES -->
     <section id="features" class="features">
         <div class="container">
-            <h2 class="section-title reveal">Engineered for Competitors</h2>
+            <h2 class="section-title reveal" data-i18n="feat_title">Engineered for Competitors</h2>
             
             <div class="grid">
-                
-                <!-- CARD 1 -->
                 <div class="card tilt-card reveal">
                     <div class="card-glare"></div>
                     <div class="card-content">
-                        <div class="card-icon">
-                            <!-- Zap Icon -->
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                        </div>
-                        <h3>Ultimate Power</h3>
-                        <p>Unlocks Windows' hidden "Ultimate Performance" power scheme. Prevents your CPU from parking cores and guarantees maximum clock speeds.</p>
+                        <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+                        <h3 data-i18n="c1_title">Ultimate Power</h3>
+                        <p data-i18n="c1_desc">Unlocks Windows' hidden "Ultimate Performance" power scheme. Prevents your CPU from parking cores and guarantees maximum clock speeds.</p>
                     </div>
                 </div>
 
-                <!-- CARD 2 -->
                 <div class="card tilt-card reveal" style="transition-delay: 0.1s;">
                     <div class="card-glare"></div>
                     <div class="card-content">
-                        <div class="card-icon">
-                            <!-- Globe/Network Icon -->
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                        </div>
-                        <h3>Network Overdrive</h3>
-                        <p>Modifies the Windows TCP/IP stack in the registry to disable network throttling and Nagle's algorithm. Experience the lowest possible ping.</p>
+                        <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
+                        <h3 data-i18n="c2_title">Network Overdrive</h3>
+                        <p data-i18n="c2_desc">Modifies the Windows TCP/IP stack in the registry to disable network throttling and Nagle's algorithm. Experience the lowest possible ping.</p>
                     </div>
                 </div>
 
-                <!-- CARD 3 -->
                 <div class="card tilt-card reveal" style="transition-delay: 0.2s;">
                     <div class="card-glare"></div>
                     <div class="card-content">
-                        <div class="card-icon">
-                            <!-- CPU/Chip Icon -->
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
-                        </div>
-                        <h3>RAM Management</h3>
-                        <p>Forces Windows to keep core system files in your fast RAM instead of paging them out to the disk. Eliminates micro-stutters instantly.</p>
+                        <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></div>
+                        <h3 data-i18n="c3_title">RAM Management</h3>
+                        <p data-i18n="c3_desc">Forces Windows to keep core system files in your fast RAM instead of paging them out to the disk. Eliminates micro-stutters instantly.</p>
                     </div>
                 </div>
 
-                <!-- CARD 4 -->
                 <div class="card tilt-card reveal">
                     <div class="card-glare"></div>
                     <div class="card-content">
-                        <div class="card-icon">
-                            <!-- Mouse Icon -->
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="7"></rect><line x1="12" y1="2" x2="12" y2="6"></line></svg>
-                        </div>
-                        <h3>1:1 Input Accuracy</h3>
-                        <p>Completely strips away Windows inherent mouse acceleration and smoothing curves. Your aim becomes entirely dependent on raw physical movement.</p>
+                        <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="7"></rect><line x1="12" y1="2" x2="12" y2="6"></line></svg></div>
+                        <h3 data-i18n="c4_title">1:1 Input Accuracy</h3>
+                        <p data-i18n="c4_desc">Completely strips away Windows inherent mouse acceleration and smoothing curves. Your aim becomes entirely dependent on raw physical movement.</p>
                     </div>
                 </div>
 
-                <!-- CARD 5 -->
                 <div class="card tilt-card reveal" style="transition-delay: 0.1s;">
                     <div class="card-glare"></div>
                     <div class="card-content">
-                        <div class="card-icon">
-                            <!-- Trash Icon -->
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                        </div>
-                        <h3>System Purge</h3>
-                        <p>Intelligently scans and deletes hundreds of megabytes of temporary junk files, crash dumps, and prefetch caches that slow down boot times.</p>
+                        <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></div>
+                        <h3 data-i18n="c5_title">System Purge</h3>
+                        <p data-i18n="c5_desc">Intelligently scans and deletes hundreds of megabytes of temporary junk files, crash dumps, and prefetch caches that slow down boot times.</p>
                     </div>
                 </div>
 
-                <!-- CARD 6 -->
                 <div class="card tilt-card reveal" style="transition-delay: 0.2s;">
                     <div class="card-glare"></div>
                     <div class="card-content">
-                        <div class="card-icon">
-                            <!-- Shield Icon -->
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                        </div>
-                        <h3>Fully Transparent</h3>
-                        <p>Unlike other "Boosters" compiled into shady .exe files, Ghost Tweaks is delivered as a raw Python script. You can read every line of code.</p>
+                        <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                        <h3 data-i18n="c6_title">Fully Transparent</h3>
+                        <p data-i18n="c6_desc">Unlike other "Boosters" compiled into shady .exe files, Ghost Tweaks is delivered as a raw Python script. You can read every line of code.</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -565,13 +352,13 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-box reveal">
-                    <h2>Why Python?</h2>
-                    <p>Most gaming optimizers on the internet are black-box applications full of ads, tracking telemetry, or worse — malware. We chose a different path.</p>
-                    <p>By releasing <strong>Ghost Tweaks Ultra</strong> as an open-source Python script, we guarantee 100% transparency. Any developer can open the file, verify exactly which registry keys are being modified, and run it safely from the terminal.</p>
+                    <h2 data-i18n="about_title">Why Python?</h2>
+                    <p data-i18n="about_p1">Most gaming optimizers on the internet are black-box applications full of ads, tracking telemetry, or worse — malware. We chose a different path.</p>
+                    <p data-i18n="about_p2">By releasing Ghost Tweaks Ultra as an open-source Python script, we guarantee 100% transparency. Any developer can open the file, verify exactly which registry keys are being modified, and run it safely from the terminal.</p>
                 </div>
 
                 <div class="about-box reveal" style="transition-delay: 0.2s; background: rgba(255,255,255,0.02); padding: 40px; border: 1px solid var(--border-color); border-radius: 16px;">
-                    <h2 style="font-size: 1.5rem; color: #fff;">Terminal-Ready</h2>
+                    <h2 style="font-size: 1.5rem; color: #fff;" data-i18n="term_title">Terminal-Ready</h2>
                     <div style="background: #000; padding: 20px; border-radius: 8px; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: #a0a0a0; margin-top: 20px;">
                         <span style="color: #4CAF50;">>_</span> Pip install requirements...<br>
                         <span style="color: #4CAF50;">>_</span> Checking administrator privileges... [OK]<br>
@@ -585,80 +372,137 @@
 
     <footer>
         <div class="container">
+            <!-- SOCIAL LINKS IM FOOTER -->
+            <div style="display: flex; justify-content: center; gap: 32px; margin-bottom: 24px;">
+                <a href="https://discord.gg/3VybqSQv" target="_blank" class="social-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    Discord
+                </a>
+                <a href="https://www.tiktok.com/@realcoretech_" target="_blank" class="social-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                    TikTok
+                </a>
+            </div>
+
             <p>&copy; 2026 Ghost Tweaks Ultra. All rights reserved.</p>
-            <p style="margin-top: 8px; font-size: 0.8rem;">Always create a system restore point before modifying registry settings.</p>
+            <p style="margin-top: 8px; font-size: 0.8rem;" data-i18n="footer_warn">Always create a system restore point before modifying registry settings.</p>
         </div>
     </footer>
 
+
     <!-- ========================================== -->
-    <!--            JAVASCRIPT ANIMATIONS           -->
+    <!--            JAVASCRIPT & LOGIC              -->
     <!-- ========================================== -->
     <script>
-        // 1. DYNAMIC NAVBAR (Glassmorphism on scroll)
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+        // --- 1. DOWNLOAD MODAL LOGIC ---
+        const downloadBtn = document.getElementById('trigger-download');
+        const modal = document.getElementById('download-modal');
+        const closeModalBtns =[document.getElementById('close-modal'), document.getElementById('btn-modal-close')];
+
+        // Open modal when download is clicked (Download happens automatically via href/download attribute)
+        downloadBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+        });
+
+        // Close modal
+        closeModalBtns.forEach(btn => btn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        }));
+
+        // Close if clicking outside the modal box
+        window.addEventListener('click', (e) => {
+            if(e.target === modal) {
+                modal.classList.remove('active');
             }
         });
 
-        // 2. SMOOTH SCROLL REVEAL (Intersection Observer)
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target);
-            });
-        }, revealOptions);
-        revealElements.forEach(el => revealOnScroll.observe(el));
 
-        // 3. 3D TILT EFFECT (Hologram Cards)
-        const tiltCards = document.querySelectorAll('.tilt-card');
-        tiltCards.forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left; 
-                const y = e.clientY - rect.top;  
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = ((y - centerY) / centerY) * -10;
-                const rotateY = ((x - centerX) / centerX) * 10;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-                
-                const glare = card.querySelector('.card-glare');
-                glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.1), transparent 50%)`;
+        // --- 2. MULTI-LANGUAGE SYSTEM (EN / DE) ---
+        let currentLang = 'en';
+        
+        const translations = {
+            en: {
+                nav_features: "Features", nav_about: "About", nav_community: "Community",
+                badge_text: "Build 3.0.0 Stable",
+                hero_desc: "The ultimate, open-source Windows performance optimizer for gamers. Written in pure Python. No bloatware. Just raw, uncompromised performance.",
+                btn_download: "Download .py Script", btn_source: "View Features",
+                modal_title: "Download Started!",
+                modal_desc: "Follow these two quick steps to run the optimizer securely on your machine.",
+                step1_title: "Step 1: Get Python",
+                step1_desc: "If you don't have Python installed, download it from python.org. <strong>CRITICAL:</strong> Check the box <code>Add Python to PATH</code> during the installation process!",
+                step2_title: "Step 2: Run the Optimizer",
+                step2_desc: "Double-click the downloaded <code>ghost_tweaks.py</code> file, or right-click it and select <strong>Run as Administrator</strong>.",
+                btn_understood: "Got it, close menu",
+                feat_title: "Engineered for Competitors",
+                c1_title: "Ultimate Power", c1_desc: "Unlocks Windows' hidden 'Ultimate Performance' power scheme. Prevents your CPU from parking cores and guarantees maximum clock speeds.",
+                c2_title: "Network Overdrive", c2_desc: "Modifies the Windows TCP/IP stack in the registry to disable network throttling and Nagle's algorithm. Experience the lowest possible ping.",
+                c3_title: "RAM Management", c3_desc: "Forces Windows to keep core system files in your fast RAM instead of paging them out to the disk. Eliminates micro-stutters instantly.",
+                c4_title: "1:1 Input Accuracy", c4_desc: "Completely strips away Windows inherent mouse acceleration and smoothing curves. Your aim becomes entirely dependent on raw physical movement.",
+                c5_title: "System Purge", c5_desc: "Intelligently scans and deletes hundreds of megabytes of temporary junk files, crash dumps, and prefetch caches that slow down boot times.",
+                c6_title: "Fully Transparent", c6_desc: "Unlike other 'Boosters' compiled into shady .exe files, Ghost Tweaks is delivered as a raw Python script. You can read every line of code.",
+                about_title: "Why Python?", 
+                about_p1: "Most gaming optimizers on the internet are black-box applications full of ads, tracking telemetry, or worse — malware. We chose a different path.",
+                about_p2: "By releasing Ghost Tweaks Ultra as an open-source Python script, we guarantee 100% transparency. Any developer can open the file, verify exactly which registry keys are being modified, and run it safely from the terminal.",
+                term_title: "Terminal-Ready", footer_warn: "Always create a system restore point before modifying registry settings."
+            },
+            de: {
+                nav_features: "Funktionen", nav_about: "Über uns", nav_community: "Community",
+                badge_text: "Version 3.0.0 Stabil",
+                hero_desc: "Der ultimative, Open-Source Windows Performance Optimizer für Gamer. Geschrieben in reinem Python. Keine Bloatware. Nur pure Leistung.",
+                btn_download: ".py Skript Herunterladen", btn_source: "Funktionen ansehen",
+                modal_title: "Download gestartet!",
+                modal_desc: "Befolge diese zwei kurzen Schritte, um den Optimizer sicher auszuführen.",
+                step1_title: "Schritt 1: Python installieren",
+                step1_desc: "Falls du Python nicht hast, lade es von python.org herunter. <strong>WICHTIG:</strong> Setze bei der Installation unbedingt den Haken bei <code>Add Python to PATH</code>!",
+                step2_title: "Schritt 2: Optimizer starten",
+                step2_desc: "Mache einen Doppelklick auf die heruntergeladene <code>ghost_tweaks.py</code>, oder mache einen Rechtsklick und wähle <strong>Als Administrator ausführen</strong>.",
+                btn_understood: "Verstanden, schließen",
+                feat_title: "Entwickelt für den E-Sport",
+                c1_title: "Maximale Power", c1_desc: "Schaltet den versteckten 'Ultimate Performance' Modus frei. Verhindert das Parken von CPU-Kernen und erzwingt maximalen Takt.",
+                c2_title: "Netzwerk Overdrive", c2_desc: "Modifiziert den TCP/IP Stack in der Registry, deaktiviert Drosselung und Nagles Algorithmus. Erlebe den absolut niedrigsten Ping.",
+                c3_title: "RAM Management", c3_desc: "Zwingt Windows, wichtige Systemdateien im schnellen RAM zu behalten, statt sie auf die Festplatte auszulagern. Behebt Ruckler (Stuttering).",
+                c4_title: "1:1 Maus Input", c4_desc: "Entfernt die windowseigene Mausbeschleunigung und Glättung komplett. Dein Aiming hängt nur noch von deinen physischen Bewegungen ab.",
+                c5_title: "System Bereinigung", c5_desc: "Scannt intelligent das System und löscht hunderte Megabyte an temporärem Müll, Crash-Dumps und Prefetch-Caches für schnelle Boot-Zeiten.",
+                c6_title: "Volle Transparenz", c6_desc: "Im Gegensatz zu anderen 'Boostern', die als undurchsichtige .exe kommen, ist Ghost Tweaks ein rohes Python Skript. Du kannst jede Zeile Code lesen.",
+                about_title: "Warum Python?",
+                about_p1: "Die meisten Gaming-Optimizer im Internet sind Blackbox-Programme voller Werbung, Telemetrie oder sogar Malware. Wir gehen einen anderen Weg.",
+                about_p2: "Indem wir Ghost Tweaks Ultra als Open-Source-Python-Skript veröffentlichen, garantieren wir 100% Transparenz. Jeder Entwickler kann die Datei öffnen, prüfen, welche Registry-Keys geändert werden, und sie sicher ausführen.",
+                term_title: "Terminal-Bereit", footer_warn: "Erstelle immer einen Systemwiederherstellungspunkt, bevor du Registry-Änderungen vornimmst."
+            }
+        };
+
+        const langToggleBtn = document.getElementById('lang-toggle');
+        const langText = document.getElementById('lang-text');
+
+        langToggleBtn.addEventListener('click', () => {
+            // Add animation class
+            langToggleBtn.classList.add('animating');
+            setTimeout(() => langToggleBtn.classList.remove('animating'), 600);
+
+            // Toggle language
+            currentLang = currentLang === 'en' ? 'de' : 'en';
+            langText.innerText = currentLang.toUpperCase();
+
+            // Update all texts
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key]; // innerHTML allows bold/code tags
+                }
             });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-                card.style.transition = 'transform 0.5s ease';
-                setTimeout(() => card.style.transition = '', 500); 
-            });
+
+            // Re-trigger Hacker Text Animation for coolness
+            triggerHackerText();
         });
 
-        // 4. MOUSE FOLLOWER GLOW (Backdrop effect)
-        const glow = document.getElementById('mouse-glow');
-        document.addEventListener('mousemove', (e) => {
-            requestAnimationFrame(() => {
-                glow.style.left = e.clientX + 'px';
-                glow.style.top = e.clientY + 'px';
-            });
-        });
 
-        // 5. HACKER TEXT EFFECT (Matrix style decoding on load)
+        // --- 3. HACKER TEXT EFFECT ---
         const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
-        const hackerElement = document.querySelector('.hacker-text');
-        let iterations = 0;
+        const hackerElement = document.getElementById('hacker-title');
         const originalText = hackerElement.dataset.value;
         
-        setTimeout(() => {
+        function triggerHackerText() {
+            let iterations = 0;
             const interval = setInterval(() => {
                 hackerElement.innerText = originalText.split("")
                     .map((letter, index) => {
@@ -670,80 +514,101 @@
                 if(iterations >= originalText.length) clearInterval(interval);
                 iterations += 1 / 3; 
             }, 30);
-        }, 500); 
+        }
+        
+        setTimeout(triggerHackerText, 500); // Run on load
 
-        // 6. HIGH-TECH CANVAS PARTICLE SYSTEM (Network Nodes)
+
+        // --- 4. NAVBAR SCROLL & REVEAL ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        revealElements.forEach(el => revealOnScroll.observe(el));
+
+
+        // --- 5. 3D TILT CARDS ---
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const rotateX = (((e.clientY - rect.top) - (rect.height/2)) / (rect.height/2)) * -10;
+                const rotateY = (((e.clientX - rect.left) - (rect.width/2)) / (rect.width/2)) * 10;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                card.querySelector('.card-glare').style.background = `radial-gradient(circle at ${e.clientX - rect.left}px ${e.clientY - rect.top}px, rgba(255,255,255,0.1), transparent 50%)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                card.style.transition = 'transform 0.5s ease';
+                setTimeout(() => card.style.transition = '', 500); 
+            });
+        });
+
+
+        // --- 6. MOUSE FOLLOWER GLOW ---
+        const glow = document.getElementById('mouse-glow');
+        document.addEventListener('mousemove', (e) => {
+            requestAnimationFrame(() => {
+                glow.style.left = e.clientX + 'px';
+                glow.style.top = e.clientY + 'px';
+            });
+        });
+
+
+        // --- 7. BACKGROUND CANVAS PARTICLES ---
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray =[];
         
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            initParticles();
-        });
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initParticles(); }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
         class Particle {
             constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
+                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 1.5 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.5; this.speedY = (Math.random() - 0.5) * 0.5;
             }
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
+                this.x += this.speedX; this.y += this.speedY;
                 if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
                 if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
             }
-            draw() {
-                ctx.fillStyle = 'rgba(0, 173, 181, 0.5)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
+            draw() { ctx.fillStyle = 'rgba(0, 173, 181, 0.5)'; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
         }
 
         function initParticles() {
             particlesArray =[];
-            let numberOfParticles = (canvas.height * canvas.width) / 12000;
-            if(numberOfParticles > 150) numberOfParticles = 150; 
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
+            let num = Math.min((canvas.height * canvas.width) / 12000, 150);
+            for (let i = 0; i < num; i++) particlesArray.push(new Particle());
         }
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-                
+                particlesArray[i].update(); particlesArray[i].draw();
                 for (let j = i; j < particlesArray.length; j++) {
-                    const dx = particlesArray[i].x - particlesArray[j].x;
-                    const dy = particlesArray[i].y - particlesArray[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (distance < 120) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(0, 173, 181, ${0.15 - distance/800})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
-                        ctx.stroke();
+                    const dist = Math.sqrt(Math.pow(particlesArray[i].x - particlesArray[j].x, 2) + Math.pow(particlesArray[i].y - particlesArray[j].y, 2));
+                    if (dist < 120) {
+                        ctx.beginPath(); ctx.strokeStyle = `rgba(0, 173, 181, ${0.15 - dist/800})`; ctx.lineWidth = 0.5;
+                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y); ctx.lineTo(particlesArray[j].x, particlesArray[j].y); ctx.stroke();
                     }
                 }
             }
             requestAnimationFrame(animateParticles);
         }
-
-        initParticles();
         animateParticles();
-
     </script>
 </body>
 </html>
