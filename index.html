@@ -258,7 +258,7 @@
             </p>
             
             <div class="hero-buttons reveal" style="transition-delay: 0.3s;">
-                <!-- GITHUB DOWNLOAD LINK (Wird nun von JS verarbeitet) -->
+                <!-- GITHUB DOWNLOAD LINK -->
                 <a href="https://raw.githubusercontent.com/Ilay-dev/GhostTweaks/main/ghost_tweaks.py" class="btn-primary" id="trigger-download">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                     <span data-i18n="btn_download">Download .py Script</span>
@@ -398,41 +398,72 @@
     <!--            JAVASCRIPT & LOGIC              -->
     <!-- ========================================== -->
     <script>
-        // --- 1. DOWNLOAD MODAL & FORCED DOWNLOAD LOGIC ---
+        // --- 1. ULTIMATE FORCE DOWNLOAD LOGIC ---
         const downloadBtn = document.getElementById('trigger-download');
         const modal = document.getElementById('download-modal');
         const closeModalBtns =[document.getElementById('close-modal'), document.getElementById('btn-modal-close')];
 
-        // Wenn der Button geklickt wird, fangen wir das ab
-        downloadBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // Verhindert, dass der Browser die Datei einfach als Text-Tab öffnet
-            modal.classList.add('active'); // Zeige das Anweisungs-Fenster
+        async function forceDownload(url, filename) {
+            try {
+                // Versuch 1: Normaler Fetch (Klappt perfekt, wenn die HTML-Seite online gehostet ist)
+                const response = await fetch(url, { cache: 'no-store' });
+                if (!response.ok) throw new Error("Network error");
+                
+                const text = await response.text();
+                
+                // DER TRICK: Wir verpacken den Text als "application/octet-stream" (unbekannte Binärdatei)
+                // Dadurch MUSS der Browser es als Datei runterladen, anstatt es als Text-Tab anzuzeigen.
+                const blob = new Blob([text], { type: 'application/octet-stream' });
+                triggerDownloadEvent(blob, filename);
 
-            // Hole die Datei per Skript im Hintergrund und erzwinge den Download als Datei
-            const fileUrl = downloadBtn.getAttribute('href');
+            } catch (err) {
+                console.warn("Direct fetch blocked (probably testing locally via file://). Using proxy fallback...");
+                
+                try {
+                    // Versuch 2: Falls der Nutzer die Datei lokal vom Desktop testet, blockiert der Browser Fetch. 
+                    // Wir umgehen das mit einem CORS-Proxy.
+                    const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
+                    const proxyResponse = await fetch(proxyUrl);
+                    if (!proxyResponse.ok) throw new Error("Proxy error");
+
+                    const proxyText = await proxyResponse.text();
+                    const proxyBlob = new Blob([proxyText], { type: 'application/octet-stream' });
+                    triggerDownloadEvent(proxyBlob, filename);
+
+                } catch (proxyErr) {
+                    console.error("All fetch methods failed.", proxyErr);
+                    // Letzter Notfall-Ausweg
+                    window.open(url, '_blank');
+                }
+            }
+        }
+
+        // Hilfsfunktion, die den unsichtbaren Klick ausführt
+        function triggerDownloadEvent(blob, filename) {
+            const blobUrl = window.URL.createObjectURL(blob);
+            const tempLink = document.createElement('a');
+            tempLink.style.display = 'none';
+            tempLink.href = blobUrl;
+            tempLink.download = filename; // Dateiname erzwingen
             
-            fetch(fileUrl)
-                .then(response => response.blob())
-                .then(blob => {
-                    // Erstelle eine lokale, unsichtbare Download-Verbindung
-                    const blobUrl = window.URL.createObjectURL(blob);
-                    const tempLink = document.createElement('a');
-                    tempLink.style.display = 'none';
-                    tempLink.href = blobUrl;
-                    tempLink.download = 'ghost_tweaks.py'; // Zwingt den Browser, es als Datei zu speichern
-                    
-                    document.body.appendChild(tempLink);
-                    tempLink.click(); // Klickt unsichtbar auf den Download
-                    
-                    // Aufräumen
-                    document.body.removeChild(tempLink);
-                    window.URL.revokeObjectURL(blobUrl);
-                })
-                .catch(error => {
-                    console.error('Download error:', error);
-                    // Fallback: Falls etwas blockiert, doch einfach den Tab öffnen
-                    window.open(fileUrl, '_blank');
-                });
+            document.body.appendChild(tempLink);
+            tempLink.click(); 
+            
+            setTimeout(() => {
+                document.body.removeChild(tempLink);
+                window.URL.revokeObjectURL(blobUrl);
+            }, 100);
+        }
+
+        // Button Event-Listener
+        downloadBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Stoppt das standardmäßige Öffnen im neuen Tab absolut
+            modal.classList.add('active'); // Zeige Instruktionen
+
+            const fileUrl = downloadBtn.getAttribute('href');
+            const fileName = 'ghost_tweaks.py';
+            
+            forceDownload(fileUrl, fileName);
         });
 
         // Close modal
@@ -440,11 +471,8 @@
             modal.classList.remove('active');
         }));
 
-        // Close if clicking outside the modal box
         window.addEventListener('click', (e) => {
-            if(e.target === modal) {
-                modal.classList.remove('active');
-            }
+            if(e.target === modal) modal.classList.remove('active');
         });
 
 
